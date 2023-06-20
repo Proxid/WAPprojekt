@@ -4,11 +4,15 @@ import javax.persistence.*;
 @Table(name = "photos")
 public class Photo {
     @Id
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "photoID")
     private int photoID;
 
     @Column(name = "userID")
     private int userID;
+
+    @Column(name = "photoUrl")
+    private String photoUrl;
 
     @Column(name = "photoTags")
     private String photoTags;
