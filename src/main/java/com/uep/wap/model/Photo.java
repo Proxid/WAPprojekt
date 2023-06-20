@@ -40,6 +40,13 @@ public class Photo {
     public String getPhotoTags() {
         return photoTags;
     }
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
+    }
 
     public Photo() {
     }
