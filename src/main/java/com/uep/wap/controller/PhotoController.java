@@ -61,18 +61,6 @@ public class PhotoController {
         }
     }
 
-    // @PutMapping(path = "/photo/{photoID}")
-    // public String updatePhoto(@PathVariable int photoID, @RequestBody PhotoDTO updatedPhoto) {
-    //     System.out.println("id" + photoID);
-    //     try {
-    //         photosService.updatePhoto(photoID, updatedPhoto.getPhotoUrl(), updatedPhoto.getPhotoTags());
-    //         return "Photo updated successfully!";
-    //     } catch (Exception e) {
-    //         System.err.println("Error: " + e.getMessage());
-    //         return "Photo not updated";
-    //     }
-    // }
-
     @DeleteMapping("/photo/{id}")
     public String deletePhoto(@PathVariable int id) {
         try {
