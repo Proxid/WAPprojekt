@@ -16,7 +16,14 @@ public class Photo {
     @Column(name = "photoUrl")
     private String photoUrl;
 
-    @Column(name = "photoTags")
+    // @Column(name = "photoTags")
+
+    @ManyToMany
+    @JoinTable(
+            name = "photo_tags",
+            joinColumns = @JoinColumn(name = "photoID"),
+            inverseJoinColumns = @JoinColumn(name = "tagID")
+    )
     private List<Tag> photoTags;
 
     public void setPhotoID(int photoID) {

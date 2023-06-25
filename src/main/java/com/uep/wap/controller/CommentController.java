@@ -3,7 +3,6 @@ package com.uep.wap.controller;
 import com.uep.wap.exception.NotFoundException;
 import com.uep.wap.model.Comment;
 import com.uep.wap.repository.CommentsRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,7 +13,6 @@ public class CommentController {
 
     private final CommentsRepository commentsRepository;
 
-    @Autowired
     public CommentController(CommentsRepository commentsRepository) {
         this.commentsRepository = commentsRepository;
     }

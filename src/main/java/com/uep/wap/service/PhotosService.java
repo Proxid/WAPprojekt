@@ -60,15 +60,15 @@ public class PhotosService {
 
     public void assignTagToPhoto(int photoId, Tag tag) {
         Photo photo = photoRepository.findById(photoId).orElse(null);
-        Tag existingTag = tagRepository.findByName(tag.getTagName());
+        // Tag existingTag = tagRepository.findByName(tag.getTagName());
 
-        if(existingTag == null){
-            existingTag = tagRepository.save(tag);
-        }
+        // if(existingTag == null){
+        //     existingTag = tagRepository.save(tag);
+        // }
 
-        if(photo != null){
-            photo.getPhotoTags().add(existingTag);
-        }
+        // if(photo != null){
+        //     photo.getPhotoTags().add(existingTag);
+        // }
 
         photoRepository.save(photo);
     }
