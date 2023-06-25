@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 
-public interface PhotoRepository extends PagingAndSortingRepository<Photo, Integer> {
+public interface PhotosRepository extends PagingAndSortingRepository<Photo, Integer> {
     @Modifying
     @Query("UPDATE Photo p SET p.photoUrl = :photoUrl, p.photoTags = :photoTags WHERE p.photoID = :photoID")
     void updatePhotoPropertiesById(@Param("photoID") int photoID, @Param("photoUrl") String photoUrl, @Param("photoTags") String photoTags);

@@ -4,5 +4,5 @@ import com.uep.wap.model.User;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
 
-public interface UserRepository extends PagingAndSortingRepository<User, Integer> {
+public interface UsersRepository extends PagingAndSortingRepository<User, Integer> {
 }

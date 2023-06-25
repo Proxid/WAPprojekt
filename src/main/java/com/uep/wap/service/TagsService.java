@@ -1,7 +1,7 @@
 package com.uep.wap.service;
 
 import com.uep.wap.model.Tag;
-import com.uep.wap.repository.TagRepository;
+import com.uep.wap.repository.TagsRepository;
 import com.uep.wap.dto.TagDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +13,7 @@ import java.util.List;
 public class TagsService {
 
     @Autowired
-    private TagRepository tagRepository;
+    private TagsRepository tagRepository;
 
     public void addTag(TagDTO tagDTO) {
         Tag tag = new Tag();

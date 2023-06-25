@@ -35,7 +35,7 @@ public class TagDTO {
         return taggedPhotos;
     }
 
-    public void setPhotoTags(String taggedPhotos) {
+    public void setTaggedPhotos(String taggedPhotos) {
         this.taggedPhotos = taggedPhotos;
     }
     
