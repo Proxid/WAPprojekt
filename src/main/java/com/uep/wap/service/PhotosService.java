@@ -1,7 +1,9 @@
 package com.uep.wap.service;
 
 import com.uep.wap.model.Photo;
+import com.uep.wap.model.Tag;
 import com.uep.wap.repository.PhotoRepository;
+import com.uep.wap.repository.TagRepository;
 import com.uep.wap.dto.PhotoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,9 @@ public class PhotosService {
 
     @Autowired
     private PhotoRepository photoRepository;
+
+    @Autowired
+    private TagRepository tagRepository;
 
     public void addPhoto(PhotoDTO photoDTO) {
         Photo photo = new Photo();
@@ -52,4 +57,20 @@ public class PhotosService {
     public void deleteAllPhotos() {
         photoRepository.deleteAll();
     }
+
+    public void assignTagToPhoto(int photoId, Tag tag) {
+        Photo photo = photoRepository.findById(photoId).orElse(null);
+        Tag existingTag = tagRepository.findByName(tag.getTagName());
+
+        if(existingTag == null){
+            existingTag = tagRepository.save(tag);
+        }
+
+        if(photo != null){
+            photo.getPhotoTags().add(existingTag);
+        }
+
+        photoRepository.save(photo);
+    }
+
 }
