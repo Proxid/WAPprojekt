@@ -2,9 +2,9 @@ package com.uep.wap.controller;
 
 import java.util.List;
 
-import com.uep.wap.dto.PhotoDTO;
-import com.uep.wap.model.Photo;
-import com.uep.wap.service.PhotosService;
+import com.uep.wap.dto.TagDTO;
+import com.uep.wap.model.Tag;
+import com.uep.wap.service.TagsService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,78 +18,78 @@ public class TagsController {
     }
 
     @GetMapping(path = "/tags")
-    public Iterable<Photo> getAllTags() {
+    public Iterable<Tag> getAllTags() {
         return tagsService.getAllTags();
     }
 
-    @PostMapping(path = "/photo")
-    public String addPhoto(@RequestBody PhotoDTO photo) {
+    @PostMapping(path = "/tag")
+    public String addTag(@RequestBody TagDTO tag) {
         try {
-            photosService.addPhoto(photo);
-            return "Photo added successfully!";
+            tagsService.addTag(tag);
+            return "Tag added successfully!";
         } catch (Exception e) {
             System.err.println("Error: " + e.getMessage());
-            return "Single photo not added";
+            return "Single tag not added";
         }
     }
 
-    @PostMapping("/{photoId}/tags")
-    public Photo assignTagToPhoto(@PathVariable Long photoId, @RequestBody Tag tag){
-        Photo photo = photoRepository.findById(photoId).orElse(null);
-        Tag existingTag = tagRepository.findByName(tag.getName());
+    // @PostMapping("/{photoId}/tags")
+    // public Photo assignTagToPhoto(@PathVariable Long photoId, @RequestBody Tag tag){
+    //     Photo photo = photoRepository.findById(photoId).orElse(null);
+    //     Tag existingTag = tagRepository.findByName(tag.getName());
 
-        if(existingTag == null){
-            existingTag = tagRepository.save(tag);
-        }
+    //     if(existingTag == null){
+    //         existingTag = tagRepository.save(tag);
+    //     }
 
-        if(photo != null){
-            photo.getTags().add(existingTag);
-        }
+    //     if(photo != null){
+    //         photo.getTags().add(existingTag);
+    //     }
 
-        return photoRepository.save(photo);
-    }
+    //     return photoRepository.save(photo);
+    // }
 
-    @PostMapping(path = "/photos")
-    public String addPhotos(@RequestBody List<PhotoDTO> photos) {
+    @PostMapping(path = "/tags")
+    public String addTags(@RequestBody List<TagDTO> tags) {
         try {
-            photosService.addPhotos(photos);
-            return "Multiple photos added successfully!";
+            tagsService.addTags(tags);
+            return "Multiple tags added successfully!";
         } catch (Exception e) {
             System.err.println("Error: " + e.getMessage());
-            return "Multiple photos not added";
+            return "Multiple tags not added";
         }
     }
 
-    @PutMapping(path = "/photo/{photoID}")
-    public String updatePhoto(@PathVariable int photoID, @RequestBody PhotoDTO updatedPhoto) {
-        System.out.println("id" + photoID);
+    // @PutMapping(path = "/tag/{tagID}")
+    // public String updatePhoto(@PathVariable int photoID, @RequestBody PhotoDTO updatedPhoto) {
+    //     System.out.println("id" + photoID);
+    //     try {
+    //         photosService.updatePhoto(photoID, updatedPhoto.getPhotoUrl(), updatedPhoto.getPhotoTags());
+    //         return "Photo updated successfully!";
+    //     } catch (Exception e) {
+    //         System.err.println("Error: " + e.getMessage());
+    //         return "Photo not updated";
+    //     }
+    // }
+
+    @DeleteMapping("/tag/{id}")
+    public String deleteTag(@PathVariable int id) {
         try {
-            photosService.updatePhoto(photoID, updatedPhoto.getPhotoUrl(), updatedPhoto.getPhotoTags());
-            return "Photo updated successfully!";
+            tagsService.deleteTag(id);
+            return "Tag deleted successfully!";
         } catch (Exception e) {
             System.err.println("Error: " + e.getMessage());
-            return "Photo not updated";
+            return "Tago not deleted";
         }
     }
 
-    @DeleteMapping("/photo/{id}")
-    public String deletePhoto(@PathVariable int id) {
+    @DeleteMapping("/tags")
+    public String deleteAllTags() {
         try {
-            photosService.deletePhoto(id);
-            return "Photo deleted successfully!";
+            tagsService.deleteAllTags();
+            return "All tags deleted successfully";
         } catch (Exception e) {
-            System.err.println("Error: " + e.getMessage());
-            return "Photo not deleted";
-        }
-    }
-
-    @DeleteMapping("/photos")
-    public String deleteAllPhotos() {
-        try {
-            photosService.deleteAllPhotos();
-            return "All photos deleted successfully";
-        } catch (Exception e) {
-            return "Photos not found";
+            return "Tags not found";
         }
     }
 

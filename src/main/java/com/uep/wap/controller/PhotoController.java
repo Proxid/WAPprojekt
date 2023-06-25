@@ -38,21 +38,21 @@ public class PhotoController {
         }
     }
 
-    @PostMapping("/{photoId}/tags")
-    public Photo assignTagToPhoto(@PathVariable Long photoId, @RequestBody Tag tag){
-        Photo photo = photoRepository.findById(photoId).orElse(null);
-        Tag existingTag = tagRepository.findByName(tag.getName());
+    // @PostMapping("/{photoId}/tags")
+    // public Photo assignTagToPhoto(@PathVariable Long photoId, @RequestBody Tag tag){
+    //     Photo photo = photoRepository.findById(photoId).orElse(null);
+    //     Tag existingTag = tagRepository.findByName(tag.getName());
 
-        if(existingTag == null){
-            existingTag = tagRepository.save(tag);
-        }
+    //     if(existingTag == null){
+    //         existingTag = tagRepository.save(tag);
+    //     }
 
-        if(photo != null){
-            photo.getTags().add(existingTag);
-        }
+    //     if(photo != null){
+    //         photo.getTags().add(existingTag);
+    //     }
 
-        return photoRepository.save(photo);
-    }
+    //     return photoRepository.save(photo);
+    // }
 
     @PostMapping(path = "/photos")
     public String addPhotos(@RequestBody List<PhotoDTO> photos) {
