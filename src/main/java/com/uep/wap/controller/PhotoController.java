@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.uep.wap.dto.PhotoDTO;
 import com.uep.wap.model.Photo;
+import com.uep.wap.model.Tag;
 import com.uep.wap.service.PhotosService;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,6 +39,17 @@ public class PhotoController {
         }
     }
 
+    @PostMapping("/{photoId}/tags")
+    public String assignTagToPhoto(@PathVariable int photoId, @RequestBody Tag tag){
+        try {
+            photosService.assignTagToPhoto(photoId, tag);
+            return "Tag assigned to photo successfully!";
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+            return "Tag not added";
+        }
+    }
+
     @PostMapping(path = "/photos")
     public String addPhotos(@RequestBody List<PhotoDTO> photos) {
         try {
@@ -49,17 +61,17 @@ public class PhotoController {
         }
     }
 
-    @PutMapping(path = "/photo/{photoID}")
-    public String updatePhoto(@PathVariable int photoID, @RequestBody PhotoDTO updatedPhoto) {
-        System.out.println("id" + photoID);
-        try {
-            photosService.updatePhoto(photoID, updatedPhoto.getPhotoUrl(), updatedPhoto.getPhotoTags());
-            return "Photo updated successfully!";
-        } catch (Exception e) {
-            System.err.println("Error: " + e.getMessage());
-            return "Photo not updated";
-        }
-    }
+    // @PutMapping(path = "/photo/{photoID}")
+    // public String updatePhoto(@PathVariable int photoID, @RequestBody PhotoDTO updatedPhoto) {
+    //     System.out.println("id" + photoID);
+    //     try {
+    //         photosService.updatePhoto(photoID, updatedPhoto.getPhotoUrl(), updatedPhoto.getPhotoTags());
+    //         return "Photo updated successfully!";
+    //     } catch (Exception e) {
+    //         System.err.println("Error: " + e.getMessage());
+    //         return "Photo not updated";
+    //     }
+    // }
 
     @DeleteMapping("/photo/{id}")
     public String deletePhoto(@PathVariable int id) {

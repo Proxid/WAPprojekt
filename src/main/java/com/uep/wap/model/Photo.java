@@ -1,4 +1,6 @@
 package com.uep.wap.model;
+import java.util.List;
+
 import javax.persistence.*;
 @Entity
 @Table(name = "photos")
@@ -15,7 +17,7 @@ public class Photo {
     private String photoUrl;
 
     @Column(name = "photoTags")
-    private String photoTags;
+    private List<Tag> photoTags;
 
     public void setPhotoID(int photoID) {
         this.photoID = photoID;
@@ -33,11 +35,11 @@ public class Photo {
         return userID;
     }
 
-    public void setPhotoTags(String photoTags) {
+    public void setPhotoTags(List<Tag> photoTags) {
         this.photoTags = photoTags;
     }
 
-    public String getPhotoTags() {
+    public List<Tag> getPhotoTags() {
         return photoTags;
     }
     public String getPhotoUrl() {
