@@ -38,4 +38,5 @@ public class PhotoDTO {
     public void setPhotoTags(String photoTags) {
         this.photoTags = photoTags;
     }
+    
 }

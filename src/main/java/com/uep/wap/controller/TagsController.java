@@ -9,22 +9,17 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "/api")
-public class PhotoController {
+public class TagsController {
 
-    private final PhotosService photosService;
+    private final TagsService tagsService;
 
-    public PhotoController(PhotosService photosService) {
-        this.photosService = photosService;
+    public TagsController(TagsService tagsService) {
+        this.tagsService = tagsService;
     }
 
-    @GetMapping(path = "/hello")
-    public String sayHello() {
-        return "Hello!";
-    }
-
-    @GetMapping(path = "/photos")
-    public Iterable<Photo> getAllPhotos() {
-        return photosService.getAllPhotos();
+    @GetMapping(path = "/tags")
+    public Iterable<Photo> getAllTags() {
+        return tagsService.getAllTags();
     }
 
     @PostMapping(path = "/photo")
